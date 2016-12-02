@@ -1,6 +1,7 @@
 package fb.code;
 
 import fb.utils.RandomFactory;
+import sun.management.counter.Variability;
 
 /********************************
 * 概述: 直接插入排序(Straight Insertion Sort)
@@ -24,22 +25,16 @@ public class InsertSort {
 		//arr[]数组，其中i表示未排序数列的循环中，首元素的索引
 		for(int i = 1; i < n; i++){
 			
-			//arr[]数组，期中j表示已排序数组中，末尾元素的索引
-			for(int j = i-1; j >= 0; j--){
+			int key = arr[i];
+			
+			int j = i-1;
+			
+			while(j >= 0 && arr[j] > key){
 				
-				if(arr[j] < arr[i])
-					break;
-				
-				//i = j 的时候不需要进行交换操作 i = 1, j = 0
-				if(j != i-1){
-					
-					int temp = arr[i];
-					for(int k = i-1; k >= j; k--){
-						arr[k+1] = arr[k];
-						arr[k+1] = temp;
-					}
-				}
+				arr[j + 1] = arr[j];
+				j--;
 			}
+			arr[j+1] = key;
 		}
 		RandomFactory.printSort(arr);
 	}
@@ -51,3 +46,4 @@ public class InsertSort {
 	}
 }
 //推荐文章：http://www.cnblogs.com/skywang12345/p/3596881.html
+//http://blog.csdn.net/u013063153/article/details/52667542
